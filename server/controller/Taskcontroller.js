@@ -43,21 +43,44 @@ const gettaskById = async (req, res, next) => {
 
 const updatetask = async (req, res, next) => {
   const { id } = req.params;
-
+  const { name, description, price } = req.body;  // Add this line to extract fields from req.body
+console.log(req.body);
   try {
-    const updatedtaskData = await Task.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const updatedtaskData = await Task.findByIdAndUpdate(
+      id,
+      { name, description, price },  // Specify the fields you want to update
+      { new: true }
+    );
+
     updatedtaskData
       ? res.status(200).json({
           data: updatedtaskData,
-          message: Constants.Task_UPDATED_SUCCESSFULLY,
+          message: Constants.task_UPDATED_SUCCESSFULLY,
         })
-      : res.status(400).json({ error: Constants.Task_NOT_FOUND });
+      : res.status(400).json({ error: Constants.task_NOT_FOUND });
   } catch (error) {
     next(error);
   }
 };
+
+
+// const updatetask = async (req, res, next) => {
+//   const { id } = req.params;
+
+//   try {
+//     const updatedtaskData = await Task.findByIdAndUpdate(id, req.body, {
+//       new: true,
+//     });
+//     updatedtaskData
+//       ? res.status(200).json({
+//           data: updatedtaskData,
+//           message: Constants.task_UPDATED_SUCCESSFULLY,
+//         })
+//       : res.status(400).json({ error: Constants.task_NOT_FOUND });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 const deletetask = async (req, res, next) => {
   const { id } = req.params;

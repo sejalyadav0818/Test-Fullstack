@@ -10,7 +10,7 @@ const NavbarComponent = () => {
     <>
       <Flex py={5} px={4} justify="center" bg="teal.600">
         <Text fontWeight="bold" color="white" fontSize="2xl">
-        Task Management activepplication
+        Task Management Application
         </Text>
       </Flex>
       <Box display="flex" justifyContent="center" alignItems="center" mt="16">
